@@ -1,7 +1,14 @@
 *{
     margin:0;
     padding:0;
+    box-sizing: border-box;
+}
+
+#login_container{
     background-color: #CBD8EC;
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
 }
 
 header{

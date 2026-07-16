@@ -1,7 +1,11 @@
+import { use, useState } from "react";
 import "./Login.css";
 const Login = () => {
+    const [email, setEmail] = useState("");
+    const [password, setPassword] = useState("");
+
     return (
-        <div>
+        <div id="login_container">
             <header>
                 <h1 id="heading">StudySpark</h1>
                 <p id="welcome">Welcome Back!</p>
@@ -16,8 +20,8 @@ const Login = () => {
                             name="email"
                             className="input_field"
                             placeholder="abc@gmail.com"
-                            // value={formData.username}
-                            // onChange={handleChange}
+                            value={email}
+                            onChange={(e) => setEmail(e.target.value)}
                         />
                     </div>
 
@@ -28,8 +32,8 @@ const Login = () => {
                             type="password"
                             name="password"
                             className="input_field"
-                            // value={formData.email}
-                            // onChange={handleChange}
+                            value={password}
+                            onChange={(e) => setPassword(e.target.value)}
                         />
                     </div>
 
