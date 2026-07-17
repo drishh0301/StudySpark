@@ -1,0 +1,109 @@
+.summarize-page {
+  min-height: 100vh;
+  background: radial-gradient(circle at top left, #CBD8EC, transparent 50%),
+              radial-gradient(circle at bottom right, #d8d3f5, transparent 50%),
+              #ffffff;
+  font-family: Georgia, serif;
+  text-align: center;
+  padding-bottom: 40px; 
+}
+.summarize-page #nav_container {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
+
+.app-name {
+  font-size: 48px;
+  color: #16215c;
+  margin-top: 80px;
+  margin: 0;
+  
+  padding-top: 40px; 
+}
+
+.tagline {
+  font-size: 18px;
+  color: #2e4a8f;
+  margin-top: 20px;
+  margin-bottom: 40px;
+}
+
+
+.summarize-layout {
+  display: flex;
+  gap: 20px;
+  max-width: 900px;
+  margin: 0 auto;
+  text-align: left;
+}
+
+.notes-side,
+.summary-side {
+  background-color: #ffffff;
+  border-radius: 20px;
+  padding: 30px;
+  flex: 1;
+  box-sizing: border-box;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+}
+
+.step-label {
+  display: block;
+  color: #16215c;
+  font-weight: bold;
+  font-size: 16px;
+  margin-bottom: 15px;
+}
+
+.title-input,
+.notes-side textarea {
+  width: 100%;
+  padding: 12px 14px;
+  border-radius: 10px;
+  border: 1px solid #d9c7c7;
+  background-color: #ffffff;
+  font-size: 15px;
+  font-family: inherit;
+  box-sizing: border-box;
+  margin-bottom: 15px;
+}
+
+.notes-side button {
+  width: 100%;
+  background-color: #09296f;
+  color: #f5f0f0;
+  border: none;
+  border-radius: 10px;
+  padding: 14px;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  font-family: inherit;
+}
+
+
+.empty-text {
+  color: #6b7a99;
+  font-style: italic;
+}
+
+.summary-text {
+  color: #1a1a1a;
+  font-size: 15px;
+  line-height: 1.5;
+  margin-bottom: 20px;
+}
+
+.save-btn {
+  width: 100%;
+  background-color: #0a123f;
+  color: white;
+  border: none;
+  border-radius: 10px;
+  padding: 14px;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  font-family: inherit;
+}
