@@ -66,4 +66,3 @@ function Summarize() {
 }
 
 export default Summarize;
-s
