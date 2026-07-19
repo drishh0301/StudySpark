@@ -1,0 +1,99 @@
+.signup-page {
+  min-height: 100vh;
+  background: radial-gradient(circle at top left, #CBD8EC, transparent 50%),
+              radial-gradient(circle at bottom right, #d8d3f5, transparent 50%),
+              #ffffff;
+  padding-top: 60px;
+  font-family: "Georgia", serif;
+  text-align: center;
+}
+
+.app-name {
+  font-size: 48px;
+  font-weight: bold;
+  color: #16215c; 
+  margin: 0;
+}
+
+.tagline {
+  font-size: 18px;
+  color: #2e4a8f; 
+  margin-top: 20px;
+  margin-bottom: 30px;
+}
+
+
+.signup-card {
+  background-color: #ffffff;
+  border-radius: 20px;
+  padding: 40px;
+  width: 380px;
+  box-sizing: border-box;
+  margin: 0 auto;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+}
+
+
+.signup-card label {
+  display: block;
+  color: #16215c;
+  font-size: 16px;
+  margin-bottom: 6px;
+  margin-top: 16px;
+}
+
+.signup-card input {
+  width: 100%;
+  padding: 12px 14px;
+  border-radius: 10px;
+  border: 1px solid #d9c7c7;
+  background-color: #ffffff;
+  font-size: 15px;
+  font-family: inherit;
+  box-sizing: border-box;
+}
+
+.signup-card input:focus {
+  outline: 2px solid #8b85db;
+}
+
+
+.error-text {
+  color: #b3261e;
+  font-size: 14px;
+  margin-top: 12px;
+  margin-bottom: 0;
+}
+
+
+.signup-card button {
+  width: 100%;
+  background-color: #09296f; 
+  color: #fcf8f8;
+  border: none;
+  border-radius: 10px;
+  padding: 14px;
+  font-size: 16px;
+  font-weight: 600;
+  margin-top: 24px;
+  cursor: pointer;
+  font-family: inherit;
+}
+
+.signup-card button:hover {
+  background-color: #7b74cf;
+}
+
+
+.switch-text {
+  text-align: center;
+  margin-top: 20px;
+  margin-bottom: 0;
+  color: #16215c;
+  font-size: 15px;
+}
+
+.switch-text a {
+  color: #4b2e83;
+  text-decoration: underline;
+}
