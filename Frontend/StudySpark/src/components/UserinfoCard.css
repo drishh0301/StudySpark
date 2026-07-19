@@ -1,0 +1,19 @@
+.userinfoCard {
+    flex: 1;
+    border: 2px solid #d4d4d4;
+    border-radius: 10px;
+    padding: 25px;
+    text-align: center;
+    background: white;
+}
+
+#userinfoCard h2 {
+    color: #09296f;
+    font-size: 22px;
+    margin-bottom: 20px;
+}
+
+#userinfoCard h1 {
+    color: #4a6fa5;
+    font-size: 42px;
+}
