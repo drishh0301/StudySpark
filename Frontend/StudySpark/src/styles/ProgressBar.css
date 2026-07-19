@@ -1,0 +1,22 @@
+.progressSection{
+    margin-bottom:30px;
+}
+
+.progressSection p{
+    margin-bottom:10px;
+    font-weight:600;
+}
+
+.progressBar{
+    width:100%;
+    height:10px;
+    background:#ddd;
+    border-radius:10px;
+}
+
+.progressFill{
+    width:30%;
+    height:100%;
+    background:#6C63FF;
+    border-radius:10px;
+}
