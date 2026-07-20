@@ -1,0 +1,95 @@
+*{
+    margin:0;
+    padding:0;
+    box-sizing: border-box;
+}
+
+#login_container{
+    background: radial-gradient(circle at top left, #CBD8EC, transparent 50%), radial-gradient(circle at bottom right, #d8d3f5, transparent 50%),#ffffff;
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+}
+
+header{
+    margin:50px;
+    justify-content: center;
+    align-items: center;
+    color: #09296f;
+    text-align: center;
+    font-family:Georgia, 'Times New Roman', Times, serif;
+    display: flex;
+    flex-direction: column;
+    gap:10px;
+}
+
+#heading{
+    font-size: 40px;
+}
+
+form{
+    margin:auto;
+    padding:25px;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    width: 400px;
+    border: 2px solid rgb(216, 209, 209);
+    border-radius: 10px;
+    background-color: white;
+    font-family:Georgia, 'Times New Roman', Times, serif;
+    gap: 25px;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.4);
+}
+
+.user_info{
+    display: flex;
+    flex-direction: column;
+    gap:0px;
+    background-color: white;
+    width:300px;
+    border-radius: 10px;
+    font-size: 18px;
+}
+
+.input_field{
+    background-color: white;
+    padding: 4px; 
+    margin:0px;
+    border-radius: 5px;
+    width:300px;
+    margin-top: -10px;
+    box-sizing: border-box;
+    border: 2px solid rgb(175, 168, 168);
+}
+
+.labels{
+    background-color: white;
+    color:#03153b;
+    margin:0px;
+    padding:0px;
+    display: block;
+    line-height: 1;
+}
+
+#loginbtn{
+    width:300px;
+    height:40px;
+    border: 2px solid #09296f;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.4);
+    background-color: #09296f;
+    border-radius: 10px;
+    font-family:Georgia, 'Times New Roman', Times, serif;
+    font-size: medium;
+    color:white;
+    cursor: pointer;
+}
+
+#loginbtn:hover{
+    opacity: 0.8;
+}
+
+#signup{
+    background-color: white;
+}

@@ -1,0 +1,24 @@
+body {
+    background:
+        radial-gradient(circle at top left, #cbd8ec, transparent 50%),
+        radial-gradient(circle at bottom right, #d8d3f5, transparent 50%),
+        #ffffff;
+}
+#notesContainer {
+    width: 90%;
+    margin: 40px auto;
+    padding: 30px;
+    min-height: 80vh;
+}
+
+#notesContainer h1 {
+    color: #09296f;
+    margin-bottom: 35px;
+}
+
+#notesGrid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 30px;
+    justify-content: space-between;
+}

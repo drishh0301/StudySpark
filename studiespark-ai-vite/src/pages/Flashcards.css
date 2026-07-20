@@ -1,0 +1,133 @@
+.flashcards-page {
+  min-height: 100vh;
+  background: radial-gradient(circle at top left, #CBD8EC, transparent 50%),
+              radial-gradient(circle at bottom right, #d8d3f5, transparent 50%),
+              #ffffff;
+  font-family: Georgia, serif;
+  text-align: center;
+  padding-bottom: 60px;
+}
+
+.flashcards-page #nav_container {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
+
+.flashcards-page {
+  min-height: 100vh;
+  background: radial-gradient(circle at top left, #CBD8EC, transparent 50%),
+              radial-gradient(circle at bottom right, #d8d3f5, transparent 50%),
+              #ffffff;
+  font-family: Georgia, serif;
+  text-align: center;
+  padding-bottom: 60px;
+}
+
+.app-name {
+  font-size: 40px;
+  color: #16215c;
+  margin: 0;
+  padding-top: 40px;
+}
+
+.tagline {
+  font-size: 16px;
+  color: #2e4a8f;
+  margin-top: 10px;
+  margin-bottom: 30px;
+}
+
+.flashcard {
+  width: 420px;
+  height: 260px;
+  margin: 0 auto;
+  cursor: pointer;
+  perspective: 1000px; /* gives the flip a 3D depth effect */
+}
+
+.flashcard-inner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  transition: transform 0.6s;
+  transform-style: preserve-3d; /* lets front/back exist in 3D space */
+}
+
+/* When flipped, rotate the whole inner card 180 degrees */
+.flashcard-inner.flipped {
+  transform: rotateY(180deg);
+}
+
+.flashcard-front,
+.flashcard-back {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background-color: #ffffff;
+  border-radius: 20px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 30px;
+  box-sizing: border-box;
+  backface-visibility: hidden; 
+}
+
+
+.flashcard-back {
+  transform: rotateY(180deg);
+  background-color: #e9e6fb;
+}
+
+.flashcard-front p,
+.flashcard-back p {
+  font-size: 20px;
+  color: #16215c;
+  margin: 0;
+}
+
+.hint-text {
+  color: #6b7a99;
+  font-size: 14px;
+  margin-top: 15px;
+  margin-bottom: 20px;
+}
+
+.flashcard-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+}
+
+.flashcard-buttons button {
+  background-color: #ffffff;
+  border: 1px solid #d9c7c7;
+  border-radius: 10px;
+  padding: 12px 20px;
+  font-family: inherit;
+  font-size: 15px;
+  color: #16215c;
+  cursor: pointer;
+}
+
+.shuffle-btn {
+  background-color: #8b85db !important;
+  color: #1a1a1a !important;
+  font-weight: 600;
+  border: none !important;
+}
+
+.quiz-btn {
+  margin-top: 30px;
+  background-color: #16215c;
+  color: white;
+  border: none;
+  border-radius: 10px;
+  padding: 14px 30px;
+  font-family: inherit;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+}
