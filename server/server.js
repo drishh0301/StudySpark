@@ -1,7 +1,10 @@
+const dns = require("dns");
+dns.setServers(["8.8.8.8", "8.8.4.4"]);
 const express = require("express");
 const cors = require("cors");
 require("dotenv").config();
 const authRoutes = require("./routes/authRoutes");
+const noteRoutes = require("./routes/noteRoutes"); 
 const connectDB = require("./config/db");
 
 const app = express();
@@ -15,6 +18,7 @@ app.use(express.json());
 
 //Routes
 app.use("/api/auth", authRoutes);
+app.use("/api/notes", noteRoutes); 
 
 // Test Route
 app.get("/", (req, res) => {
