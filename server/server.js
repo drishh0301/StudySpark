@@ -5,6 +5,10 @@ const cors = require("cors");
 require("dotenv").config();
 const authRoutes = require("./routes/authRoutes");
 const noteRoutes = require("./routes/noteRoutes"); 
+const flashcardRoutes = require("./routes/flashcardRoutes");
+const summaryRoutes = require("./routes/summaryRoutes");
+const quizRoutes = require("./routes/quizRoutes");
+const uploadRoutes = require("./routes/uploadRoutes");
 const connectDB = require("./config/db");
 
 const app = express();
@@ -19,7 +23,10 @@ app.use(express.json());
 //Routes
 app.use("/api/auth", authRoutes);
 app.use("/api/notes", noteRoutes); 
-
+app.use("/api/flashcards", flashcardRoutes);
+app.use("/api/summary", summaryRoutes);
+app.use("/api/quiz", quizRoutes);
+app.use("/api/upload", uploadRoutes);
 // Test Route
 app.get("/", (req, res) => {
     res.send("StudySpark Backend is Running!");
