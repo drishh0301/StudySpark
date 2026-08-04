@@ -1,7 +1,12 @@
-import Quiz from "./pages/Quiz";
+import "./App.css";
+import UploadNotes from "./pages/UploadNotes";
 
-function App() {
-  return <Quiz />;
-}
+const App = () => {
+  return (
+    <div>
+      <UploadNotes />
+    </div>
+  );
+};
 
 export default App;
