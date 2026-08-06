@@ -1,0 +1,73 @@
+.features{
+    padding:100px 90px;
+    background:#F8FAFC;
+    text-align:center;
+}
+
+.featureTag{
+    display:inline-block;
+    padding:10px 22px;
+    background:#EEF2FF;
+    color:#6C63FF;
+    border-radius:30px;
+    font-weight:600;
+    margin-bottom:20px;
+}
+
+.features h2{
+    font-size:48px;
+    color:#0F172A;
+    margin-bottom:20px;
+}
+
+.featureDesc{
+    max-width:700px;
+    margin:0 auto 60px;
+    color:#64748B;
+    font-size:18px;
+    line-height:1.8;
+}
+
+.featureGrid{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:35px;
+}
+
+.featureCard{
+    background:white;
+    border-radius:25px;
+    padding:40px 30px;
+    box-shadow:0 15px 35px rgba(0,0,0,.06);
+    transition:0.4s;
+}
+
+.featureCard:hover{
+    transform:translateY(-12px);
+    box-shadow:0 20px 45px rgba(108,99,255,.18);
+}
+
+.iconCircle{
+    width:75px;
+    height:75px;
+    margin:auto;
+    border-radius:50%;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    background:linear-gradient(135deg,#6C63FF,#06B6D4);
+    color:white;
+    font-size:28px;
+    margin-bottom:25px;
+}
+
+.featureCard h3{
+    font-size:24px;
+    margin-bottom:15px;
+    color:#0F172A;
+}
+
+.featureCard p{
+    color:#64748B;
+    line-height:1.7;
+}
