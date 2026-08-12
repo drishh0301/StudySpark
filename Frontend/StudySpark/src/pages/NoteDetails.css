@@ -1,0 +1,63 @@
+.detailsContainer {
+    width: 85%;
+    max-width: 1000px;
+    margin: 30px auto;
+}
+
+.ndContentBox,
+.ndSummaryBox {
+    background: white;
+    padding: 20px;
+    margin-top: 10px;
+    margin-bottom: 30px;
+    border-radius: 12px;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+    white-space: pre-wrap;
+    line-height: 1.7;
+    overflow-wrap: break-word;
+    word-break: break-word;
+    box-sizing: border-box;
+    max-width: 100%;
+    height: auto;
+    max-height: none;
+}
+
+.actionBtn {
+    display: inline-block;
+    padding: 10px 22px;
+    margin-right: 12px;
+    margin-bottom: 30px;
+    border: none;
+    border-radius: 8px;
+    font-size: 15px;
+    font-weight: 600;
+    cursor: pointer;
+    transition:
+        transform 0.15s ease,
+        box-shadow 0.15s ease,
+        background 0.15s ease;
+}
+
+.actionBtn:active {
+    transform: translateY(1px);
+}
+
+.summaryBtn {
+    background: #09296f;
+    color: white;
+    box-shadow: 0 3px 10px rgba(79, 70, 229, 0.3);
+}
+
+.summaryBtn:hover {
+    background: #143d94;
+}
+
+.flashcardBtn {
+    background: #09296f;
+    color: white;
+    box-shadow: 0 3px 10px rgba(5, 150, 105, 0.3);
+}
+
+.flashcardBtn:hover {
+    background: #143d94;
+}

@@ -1,8 +1,44 @@
-import { use, useState } from "react";
+import { useState } from "react";
 import "./Login.css";
+import axios from "axios";
+import { useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
+
 const Login = () => {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
+    const [error, setError] = useState("");
+
+    const navigate = useNavigate();
+
+    async function handleSubmit(e) {
+        e.preventDefault();
+
+        if (!email || !password) {
+            setError("Please fill all fields");
+            return;
+        }
+
+        try {
+            const response = await axios.post(
+                "http://localhost:5000/api/auth/login",
+                {
+                    email,
+                    password,
+                },
+            );
+
+            localStorage.setItem("token", response.data.token);
+            localStorage.setItem("user", JSON.stringify(response.data.user));
+
+            setError(""); // clear old error
+            alert("Login Successful!");
+
+            navigate("/notes");
+        } catch (err) {
+            setError(err.response?.data?.message || "Login Failed");
+        }
+    }
 
     return (
         <div id="login_container">
@@ -11,7 +47,7 @@ const Login = () => {
                 <p id="welcome">Welcome Back!</p>
             </header>
             <div>
-                <form>
+                <form onSubmit={handleSubmit}>
                     <div className="user_info">
                         <label className="labels">Email:</label>
                         <br />
@@ -37,11 +73,15 @@ const Login = () => {
                         />
                     </div>
 
+                    {error && <p style={{ color: "red" }}>{error}</p>}
                     <button type="submit" id="loginbtn">
                         Login
                     </button>
                     <div>
-                        <p id="signup">Don't have an account? Sign Up</p>
+                        <p id="signup">
+                            Don't have an account?{" "}
+                            <Link to="/signup">Sign Up</Link>
+                        </p>
                     </div>
                 </form>
             </div>

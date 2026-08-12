@@ -1,29 +1,40 @@
-import React from "react";
-import "../styles/Navbar.css";
-import { FaBrain } from "react-icons/fa";
+import "./Navbar.css";
+import { Link, useNavigate } from "react-router-dom";
 
-function Navbar() {
-  return (
-    <nav className="navbar">
+const Navbar = () => {
+    const navigate = useNavigate();
 
-      <div className="logo">
-        <FaBrain className="logoIcon" />
-        <span>StudySpark AI</span>
-      </div>
+    function logout() {
+        localStorage.removeItem("token");
+        localStorage.removeItem("user");
+        navigate("/");
+    }
 
-      <ul className="navLinks">
-        <li><a href="#home">Home</a></li>
-        <li><a href="#features">Features</a></li>
-        <li><a href="#about">About</a></li>
-        <li><a href="#contact">Contact</a></li>
-      </ul>
+    return (
+        <div id="nav_container">
+            <div id="logo">StudySpark</div>
 
-      <button className="navButton">
-        Get Started
-      </button>
+            <ul id="nav_links">
+                <li>
+                    <Link to="/notes">Home</Link>
+                </li>
 
-    </nav>
-  );
-}
+                <li>
+                    <Link to="/summarize">Summarize</Link>
+                </li>
+
+                <li>
+                    <Link to="/notes">My Notes</Link>
+                </li>
+
+                <li>
+                    <Link to="/profile">Profile</Link>
+                </li>
+
+                <li onClick={logout}>Logout</li>
+            </ul>
+        </div>
+    );
+};
 
 export default Navbar;
