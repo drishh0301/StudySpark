@@ -1,20 +1,62 @@
 const Quiz = require("../models/Quiz");
 const { askGemini } = require("../services/geminiService");
 
-const generateQuiz = async (req, res) => {
-  try {
-    const { noteId, content } = req.body;
-
-    if (!content) {
-      return res.status(400).json({
-        message: "Note content is required",
-      });
+const getQuizStats = async (req, res) => {
+    try {
+        // Each quiz question is its own document, so count distinct notes
+        // that have a quiz rather than raw question documents.
+        const noteIds = await Quiz.distinct("noteId", { userId: req.user.id });
+        res.status(200).json({ count: noteIds.length });
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({
+            message: "Failed to fetch quiz stats",
+            error: error.message,
+        });
     }
+};
 
-    const prompt = `
+const getQuizByNote = async (req, res) => {
+    try {
+        const { noteId } = req.params;
+
+        const quiz = await Quiz.find({
+            noteId,
+            userId: req.user.id,
+        }).sort({ createdAt: 1 });
+
+        res.status(200).json({ quiz });
+    } catch (error) {
+        console.error(error);
+
+        res.status(500).json({
+            message: "Failed to fetch quiz",
+            error: error.message,
+        });
+    }
+};
+
+const generateQuiz = async (req, res) => {
+    try {
+        const { noteId, content } = req.body;
+
+        if (!content || !content.trim()) {
+            return res.status(400).json({
+                message: "Note content is required",
+            });
+        }
+
+        // Roughly 1 question per 150 words, kept between 5 and 10
+        const wordCount = content.trim().split(/\s+/).length;
+        const questionCount = Math.min(
+            10,
+            Math.max(5, Math.ceil(wordCount / 150)),
+        );
+
+        const prompt = `
 You are an AI study assistant.
 
-Generate exactly 5 multiple-choice questions from the notes below.
+Generate exactly ${questionCount} multiple-choice questions from the notes below.
 
 Return ONLY valid JSON in this format:
 
@@ -35,38 +77,56 @@ Notes:
 ${content}
 `;
 
-    const response = await askGemini(prompt);
+        const response = await askGemini(prompt);
 
-    const quizzes = JSON.parse(response);
+        // Gemini frequently wraps JSON in ```json ... ``` fences even when
+        // told not to — strip those before parsing, same as flashcardController.
+        const cleanedResponse = response
+            .replace(/```json/g, "")
+            .replace(/```/g, "")
+            .trim();
 
-    const savedQuiz = [];
+        let quizzes;
 
-    for (const quiz of quizzes) {
-      const newQuiz = await Quiz.create({
-        userId: req.user.id,
-        noteId,
-        question: quiz.question,
-        options: quiz.options,
-        correctAnswer: quiz.correctAnswer,
-      });
+        try {
+            quizzes = JSON.parse(cleanedResponse);
+        } catch (err) {
+            return res.status(500).json({
+                message: "Gemini returned invalid JSON.",
+                response: cleanedResponse,
+            });
+        }
 
-      savedQuiz.push(newQuiz);
+        const savedQuiz = [];
+
+        for (const quiz of quizzes) {
+            const newQuiz = await Quiz.create({
+                userId: req.user.id,
+                noteId,
+                question: quiz.question,
+                options: quiz.options,
+                correctAnswer: quiz.correctAnswer,
+            });
+
+            savedQuiz.push(newQuiz);
+        }
+
+        res.status(201).json({
+            message: "Quiz generated successfully",
+            quiz: savedQuiz,
+        });
+    } catch (error) {
+        console.error(error);
+
+        res.status(error.status || 500).json({
+            message: error.message || "Failed to generate quiz",
+            error: error.message,
+        });
     }
-
-    res.status(201).json({
-      message: "Quiz generated successfully",
-      quiz: savedQuiz,
-    });
-
-  } catch (error) {
-    console.error(error);
-
-    res.status(500).json({
-      message: "Failed to generate quiz",
-    });
-  }
 };
 
 module.exports = {
-  generateQuiz,
+    generateQuiz,
+    getQuizByNote,
+    getQuizStats,
 };

@@ -1,31 +1,9 @@
 import { useState } from "react";
 import axios from "axios";
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import { useEffect } from "react";
 import Navbar from "../components/Navbar";
 import "./Flashcards.css";
-
-if (loading) {
-    return (
-        <>
-            <Navbar />
-            <h2 style={{ textAlign: "center", marginTop: "60px" }}>
-                Generating Flashcards...
-            </h2>
-        </>
-    );
-}
-
-if (cards.length === 0) {
-    return (
-        <>
-            <Navbar />
-            <h2 style={{ textAlign: "center", marginTop: "60px" }}>
-                No flashcards available.
-            </h2>
-        </>
-    );
-}
 
 function Flashcards() {
     const [cards, setCards] = useState([]);
@@ -34,6 +12,7 @@ function Flashcards() {
     const [isFlipped, setIsFlipped] = useState(false);
 
     const location = useLocation();
+    const navigate = useNavigate();
     const note = location.state?.note;
 
     const currentCard = cards[currentIndex] || {};
@@ -89,11 +68,62 @@ function Flashcards() {
         setLoading(false);
     }
 
+    async function loadOrGenerateFlashcards() {
+        setLoading(true);
+
+        try {
+            const existing = await axios.get(
+                `http://localhost:5000/api/flashcards/${note._id}`,
+                {
+                    headers: {
+                        Authorization: `Bearer ${localStorage.getItem("token")}`,
+                    },
+                },
+            );
+
+            if (existing.data.flashcards.length > 0) {
+                setCards(existing.data.flashcards);
+                setCurrentIndex(0);
+                setIsFlipped(false);
+                setLoading(false);
+                return;
+            }
+        } catch (err) {
+            console.log(err);
+            // fall through and try generating instead
+        }
+
+        // No existing flashcards found — generate them for the first time.
+        await generateFlashcards();
+    }
+
     useEffect(() => {
         if (note) {
-            generateFlashcards();
+            loadOrGenerateFlashcards();
         }
     }, []);
+
+    if (loading) {
+        return (
+            <>
+                <Navbar />
+                <h2 style={{ textAlign: "center", marginTop: "60px" }}>
+                    Loading Flashcards...
+                </h2>
+            </>
+        );
+    }
+
+    if (cards.length === 0) {
+        return (
+            <>
+                <Navbar />
+                <h2 style={{ textAlign: "center", marginTop: "60px" }}>
+                    No flashcards available.
+                </h2>
+            </>
+        );
+    }
 
     return (
         <div className="flashcards-page">
@@ -127,7 +157,12 @@ function Flashcards() {
                 <button onClick={handleNext}>Next &rarr;</button>
             </div>
 
-            <button className="quiz-btn">Start Quiz</button>
+            <button
+                className="quiz-btn"
+                onClick={() => navigate("/quiz", { state: { note } })}
+            >
+                Start Quiz
+            </button>
         </div>
     );
 }

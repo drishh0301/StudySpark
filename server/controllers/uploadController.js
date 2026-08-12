@@ -12,23 +12,32 @@ const uploadPDF = async (req, res) => {
                 message: "Please upload a PDF file.",
             });
         }
-        if (!noteId) {
-            return res.status(400).json({
-                message: "Note ID is required",
-            });
-        }
 
         // Read uploaded PDF
         const dataBuffer = fs.readFileSync(req.file.path);
 
         // Extract text
         const pdfData = await pdfParse(dataBuffer);
+        const extractedText = pdfData.text.trim();
+
+        if (!extractedText) {
+            fs.unlink(req.file.path, () => {});
+            return res.status(400).json({
+                message:
+                    "Couldn't find any text in this PDF. It may be a scanned or image-only document — try a PDF with selectable text instead.",
+            });
+        }
 
         // Save as Note
         const note = await Note.create({
             title: req.file.originalname,
-            content: pdfData.text,
+            content: extractedText,
             userId: req.user.id,
+        });
+
+        // Clean up the temp file now that we've extracted the text
+        fs.unlink(req.file.path, (err) => {
+            if (err) console.error("Failed to delete temp upload:", err);
         });
 
         res.status(201).json({
@@ -40,6 +49,7 @@ const uploadPDF = async (req, res) => {
 
         res.status(500).json({
             message: "Failed to upload PDF",
+            error: error.message,
         });
     }
 };

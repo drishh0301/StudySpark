@@ -57,54 +57,77 @@ function Signup() {
 
     return (
         <div className="signup-page">
-            <h1 className="app-name">StudySpark</h1>
-            <p className="tagline">Create your account</p>
+            <div id="header">
+                <h1 id="heading">StudySpark</h1>
+                <p className="tagline">Create your account</p>
+            </div>
             <div className="signup-card">
                 <form onSubmit={handleSubmit}>
-                    <label htmlFor="name">Full Name</label>
-                    <input
-                        id="name"
-                        type="text"
-                        placeholder="Your full name"
-                        value={name}
-                        onChange={(e) => setName(e.target.value)}
-                    />
+                    <div className="user_info_signup">
+                        <label className="labels" htmlFor="name">
+                            Full Name
+                        </label>
+                        <input
+                            id="name"
+                            type="text"
+                            className="input_field"
+                            placeholder="Your full name"
+                            value={name}
+                            onChange={(e) => setName(e.target.value)}
+                        />
+                    </div>
 
-                    <label htmlFor="email">Email</label>
-                    <input
-                        id="email"
-                        type="email"
-                        placeholder="abc@gmail.com"
-                        value={email}
-                        onChange={(e) => setEmail(e.target.value)}
-                    />
+                    <div className="user_info_signup">
+                        <label className="labels" htmlFor="email">
+                            Email
+                        </label>
+                        <input
+                            id="email"
+                            className="input_field"
+                            type="email"
+                            placeholder="abc@gmail.com"
+                            value={email}
+                            onChange={(e) => setEmail(e.target.value)}
+                        />
+                    </div>
 
-                    <label htmlFor="password">Password</label>
-                    <input
-                        id="password"
-                        type="password"
-                        placeholder="Create a password"
-                        value={password}
-                        onChange={(e) => setPassword(e.target.value)}
-                    />
+                    <div className="user_info_signup">
+                        <label className="labels" htmlFor="password">
+                            Password
+                        </label>
+                        <input
+                            id="password"
+                            type="password"
+                            className="input_field"
+                            placeholder="Create a password"
+                            value={password}
+                            onChange={(e) => setPassword(e.target.value)}
+                        />
+                    </div>
 
-                    <label htmlFor="confirmPassword">Confirm Password</label>
-                    <input
-                        id="confirmPassword"
-                        type="password"
-                        placeholder="Re-enter your password"
-                        value={confirmPassword}
-                        onChange={(e) => setConfirmPassword(e.target.value)}
-                    />
+                    <div className="user_info_signup">
+                        <label className="labels" htmlFor="confirmPassword">
+                            Confirm Password
+                        </label>
+                        <input
+                            id="confirmPassword"
+                            type="password"
+                            className="input_field"
+                            placeholder="Re-enter your password"
+                            value={confirmPassword}
+                            onChange={(e) => setConfirmPassword(e.target.value)}
+                        />
+                    </div>
 
                     {error && <p className="error-text">{error}</p>}
 
-                    <button type="submit">Sign Up</button>
+                    <button id="signup_button" type="submit">
+                        Sign Up
+                    </button>
+                    <p id="login">
+                        Already have an account? <a href="/login">Sign In</a>
+                    </p>
                 </form>
-
-                <p className="switch-text">
-                    Already have an account? <a href="/login">Sign In</a>
-                </p>
             </div>
         </div>
     );

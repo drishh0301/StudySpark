@@ -18,16 +18,35 @@ function Summarize() {
         }
 
         try {
+            const token = localStorage.getItem("token");
+            let noteId = note?._id;
+
+            // If there's no existing note (e.g. the user typed/pasted notes
+            // directly instead of coming from an uploaded PDF), create one
+            // first so the summary has a note to attach to.
+            if (!noteId) {
+                const createResponse = await axios.post(
+                    "http://localhost:5000/api/notes",
+                    {
+                        title: title || "Untitled Note",
+                        content: notes,
+                    },
+                    {
+                        headers: { Authorization: `Bearer ${token}` },
+                    },
+                );
+
+                noteId = createResponse.data._id;
+            }
+
             const response = await axios.post(
                 "http://localhost:5000/api/summary/generate",
                 {
-                    noteId: note?._id,
+                    noteId,
                     content: notes,
                 },
                 {
-                    headers: {
-                        Authorization: `Bearer ${localStorage.getItem("token")}`,
-                    },
+                    headers: { Authorization: `Bearer ${token}` },
                 },
             );
 

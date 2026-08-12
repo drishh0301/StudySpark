@@ -4,17 +4,20 @@ import Signup from "./pages/Signup";
 import Login from "./pages/Login";
 import Notes from "./pages/Notes";
 import Flashcards from "./pages/Flashcards";
+import Quiz from "./pages/Quiz";
 import Profile from "./pages/Profile";
 import Summarize from "./pages/Summarize";
 import NoteDetails from "./pages/NoteDetails";
 
 import ProtectedRoute from "./components/ProtectedRoute";
+import Landing from "./pages/Landing";
 
 function App() {
     return (
         <Routes>
             {/* Public Routes */}
-            <Route path="/" element={<Login />} />
+            <Route path="/" element={<Landing />} />
+            <Route path="/login" element={<Login />} />
             <Route path="/signup" element={<Signup />} />
 
             {/* Protected Routes */}
@@ -32,6 +35,15 @@ function App() {
                 element={
                     <ProtectedRoute>
                         <Flashcards />
+                    </ProtectedRoute>
+                }
+            />
+
+            <Route
+                path="/quiz"
+                element={
+                    <ProtectedRoute>
+                        <Quiz />
                     </ProtectedRoute>
                 }
             />

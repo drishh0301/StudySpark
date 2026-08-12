@@ -3,72 +3,61 @@ import "../styles/HowItWorks.css";
 import { FaUpload, FaRobot, FaGraduationCap } from "react-icons/fa";
 
 function HowItWorks() {
-  return (
-    <section className="howItWorks" id="about">
+    return (
+        <section className="howItWorks" id="about">
+            <p className="howTag">How It Works</p>
 
-      <p className="howTag">🚀 How It Works</p>
+            <h2>Study in 3 Simple Steps</h2>
 
-      <h2>Study in 3 Simple Steps</h2>
+            <p className="howDesc">
+                Upload your notes and let StudySpark AI do the hard work. Get
+                summaries, flashcards, and quizzes instantly.
+            </p>
 
-      <p className="howDesc">
-        Upload your notes and let StudySpark AI do the hard work.
-        Get summaries, flashcards, and quizzes instantly.
-      </p>
+            <div className="steps">
+                <div className="stepCard">
+                    <div className="stepIcon">
+                        <FaUpload />
+                    </div>
 
-      <div className="steps">
+                    <span className="stepNumber">01</span>
 
-        <div className="stepCard">
+                    <h3>Upload Notes</h3>
 
-          <div className="stepIcon">
-            <FaUpload />
-          </div>
+                    <p>
+                        Upload your PDF, Word document, or study notes securely.
+                    </p>
+                </div>
 
-          <span className="stepNumber">01</span>
+                <div className="stepCard">
+                    <div className="stepIcon">
+                        <FaRobot />
+                    </div>
 
-          <h3>Upload Notes</h3>
+                    <span className="stepNumber">02</span>
 
-          <p>
-            Upload your PDF, Word document, or study notes securely.
-          </p>
+                    <h3>AI Processing</h3>
 
-        </div>
+                    <p>
+                        Our AI analyzes your notes and extracts the key
+                        concepts.
+                    </p>
+                </div>
 
-        <div className="stepCard">
+                <div className="stepCard">
+                    <div className="stepIcon">
+                        <FaGraduationCap />
+                    </div>
 
-          <div className="stepIcon">
-            <FaRobot />
-          </div>
+                    <span className="stepNumber">03</span>
 
-          <span className="stepNumber">02</span>
+                    <h3>Start Learning</h3>
 
-          <h3>AI Processing</h3>
-
-          <p>
-            Our AI analyzes your notes and extracts the key concepts.
-          </p>
-
-        </div>
-
-        <div className="stepCard">
-
-          <div className="stepIcon">
-            <FaGraduationCap />
-          </div>
-
-          <span className="stepNumber">03</span>
-
-          <h3>Start Learning</h3>
-
-          <p>
-            Receive summaries, flashcards, and quizzes instantly.
-          </p>
-
-        </div>
-
-      </div>
-
-    </section>
-  );
+                    <p>Receive summaries, flashcards, and quizzes instantly.</p>
+                </div>
+            </div>
+        </section>
+    );
 }
 
 export default HowItWorks;

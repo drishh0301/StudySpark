@@ -1,20 +1,23 @@
 import React from "react";
 import "../styles/CTA.css";
+import { useNavigate } from "react-router-dom";
 
 function CTA() {
-  return (
-    <section className="cta">
+    const navigate = useNavigate();
+    return (
+        <section className="cta">
+            <h2>Start Learning Smarter Today</h2>
 
-      <h2>Start Learning Smarter Today</h2>
+            <p>
+                Let AI simplify your study sessions and help you achieve better
+                results.
+            </p>
 
-      <p>
-        Let AI simplify your study sessions and help you achieve better results.
-      </p>
-
-      <button>Get Started Free</button>
-
-    </section>
-  );
+            <button onClick={() => navigate("/signup")}>
+                Get Started for Free
+            </button>
+        </section>
+    );
 }
 
 export default CTA;

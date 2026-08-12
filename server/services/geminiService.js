@@ -14,6 +14,15 @@ async function askGemini(prompt) {
         return response.text;
     } catch (error) {
         console.error("Gemini Error:", error);
+
+        if (error?.status === 429) {
+            const quotaError = new Error(
+                "Daily AI usage limit reached for this model.",
+            );
+            quotaError.status = 429;
+            throw quotaError;
+        }
+
         throw error;
     }
 }
