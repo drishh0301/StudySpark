@@ -4,7 +4,7 @@ const express = require("express");
 const cors = require("cors");
 require("dotenv").config();
 const authRoutes = require("./routes/authRoutes");
-const noteRoutes = require("./routes/noteRoutes"); 
+const noteRoutes = require("./routes/noteRoutes");
 const flashcardRoutes = require("./routes/flashcardRoutes");
 const summaryRoutes = require("./routes/summaryRoutes");
 const quizRoutes = require("./routes/quizRoutes");
@@ -22,7 +22,7 @@ app.use(express.json());
 
 //Routes
 app.use("/api/auth", authRoutes);
-app.use("/api/notes", noteRoutes); 
+app.use("/api/notes", noteRoutes);
 app.use("/api/flashcards", flashcardRoutes);
 app.use("/api/summary", summaryRoutes);
 app.use("/api/quiz", quizRoutes);
@@ -34,6 +34,10 @@ app.get("/", (req, res) => {
 
 const PORT = process.env.PORT || 5000;
 
-app.listen(PORT, () => {
-    console.log(`Server is running on port ${PORT}`);
-});
+if (require.main === module) {
+    app.listen(PORT, () => {
+        console.log(`Server is running on port ${PORT}`);
+    });
+}
+
+module.exports = app;
