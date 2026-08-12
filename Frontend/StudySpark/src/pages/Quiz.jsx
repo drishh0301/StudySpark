@@ -18,7 +18,7 @@ function Quiz() {
     async function generateQuiz() {
         try {
             const response = await axios.post(
-                "http://localhost:5000/api/quiz/generate",
+                "https://study-spark-swart-eta.vercel.app/api/quiz/generate",
                 {
                     noteId: note._id,
                     content: note.content,
@@ -42,7 +42,7 @@ function Quiz() {
 
         try {
             const existing = await axios.get(
-                `http://localhost:5000/api/quiz/${note._id}`,
+                `https://study-spark-swart-eta.vercel.app/api/quiz/${note._id}`,
                 {
                     headers: {
                         Authorization: `Bearer ${localStorage.getItem("token")}`,

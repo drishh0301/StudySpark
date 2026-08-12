@@ -43,7 +43,7 @@ function Flashcards() {
 
         try {
             const response = await axios.post(
-                "http://localhost:5000/api/flashcards/generate",
+                "https://study-spark-swart-eta.vercel.app/api/flashcards/generate",
                 {
                     noteId: note._id,
                     content: note.content,
@@ -73,7 +73,7 @@ function Flashcards() {
 
         try {
             const existing = await axios.get(
-                `http://localhost:5000/api/flashcards/${note._id}`,
+                `https://study-spark-swart-eta.vercel.app/api/flashcards/${note._id}`,
                 {
                     headers: {
                         Authorization: `Bearer ${localStorage.getItem("token")}`,

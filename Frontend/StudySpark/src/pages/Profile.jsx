@@ -22,14 +22,26 @@ function Profile() {
 
             const [profileRes, notesRes, flashcardsRes, quizRes] =
                 await Promise.all([
-                    axios.get("http://localhost:5000/api/auth/profile", {
-                        headers,
-                    }),
-                    axios.get("http://localhost:5000/api/notes", { headers }),
-                    axios.get("http://localhost:5000/api/flashcards", {
-                        headers,
-                    }),
-                    axios.get("http://localhost:5000/api/quiz", { headers }),
+                    axios.get(
+                        "https://study-spark-swart-eta.vercel.app/api/auth/profile",
+                        {
+                            headers,
+                        },
+                    ),
+                    axios.get(
+                        "https://study-spark-swart-eta.vercel.app/api/notes",
+                        { headers },
+                    ),
+                    axios.get(
+                        "https://study-spark-swart-eta.vercel.app/api/flashcards",
+                        {
+                            headers,
+                        },
+                    ),
+                    axios.get(
+                        "https://study-spark-swart-eta.vercel.app/api/quiz",
+                        { headers },
+                    ),
                 ]);
 
             const joiningDate = profileRes.data.createdAt

@@ -26,7 +26,7 @@ function Summarize() {
             // first so the summary has a note to attach to.
             if (!noteId) {
                 const createResponse = await axios.post(
-                    "http://localhost:5000/api/notes",
+                    "https://study-spark-swart-eta.vercel.app/api/notes",
                     {
                         title: title || "Untitled Note",
                         content: notes,
@@ -40,7 +40,7 @@ function Summarize() {
             }
 
             const response = await axios.post(
-                "http://localhost:5000/api/summary/generate",
+                "https://study-spark-swart-eta.vercel.app/api/summary/generate",
                 {
                     noteId,
                     content: notes,

@@ -28,7 +28,7 @@ function Signup() {
 
         try {
             const response = await axios.post(
-                "http://localhost:5000/api/auth/signup",
+                "https://study-spark-swart-eta.vercel.app/api/auth/signup",
                 {
                     name,
                     email,

@@ -15,7 +15,7 @@ function Notes() {
     async function fetchNotes() {
         try {
             const response = await axios.get(
-                "http://localhost:5000/api/notes",
+                "https://study-spark-swart-eta.vercel.app/api/notes",
                 {
                     headers: {
                         Authorization: `Bearer ${localStorage.getItem(
@@ -33,11 +33,14 @@ function Notes() {
 
     async function deleteNote(id) {
         try {
-            await axios.delete(`http://localhost:5000/api/notes/${id}`, {
-                headers: {
-                    Authorization: `Bearer ${localStorage.getItem("token")}`,
+            await axios.delete(
+                `https://study-spark-swart-eta.vercel.app/api/notes/${id}`,
+                {
+                    headers: {
+                        Authorization: `Bearer ${localStorage.getItem("token")}`,
+                    },
                 },
-            });
+            );
 
             fetchNotes();
         } catch (err) {
@@ -62,12 +65,16 @@ function Notes() {
         formData.append("pdf", selectedFile);
 
         try {
-            await axios.post("http://localhost:5000/api/upload", formData, {
-                headers: {
-                    Authorization: `Bearer ${localStorage.getItem("token")}`,
-                    "Content-Type": "multipart/form-data",
+            await axios.post(
+                "https://study-spark-swart-eta.vercel.app/api/upload",
+                formData,
+                {
+                    headers: {
+                        Authorization: `Bearer ${localStorage.getItem("token")}`,
+                        "Content-Type": "multipart/form-data",
+                    },
                 },
-            });
+            );
 
             alert("PDF uploaded successfully!");
 
