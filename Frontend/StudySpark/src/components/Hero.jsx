@@ -50,23 +50,6 @@ function Hero() {
                         Get Started
                     </button>
                 </div>
-
-                <div className="stats">
-                    <div>
-                        <h2>5000+</h2>
-                        <span>Students</span>
-                    </div>
-
-                    <div>
-                        <h2>98%</h2>
-                        <span>Accuracy</span>
-                    </div>
-
-                    <div>
-                        <h2>100K+</h2>
-                        <span>Flashcards</span>
-                    </div>
-                </div>
             </div>
 
             <div className="heroRight">
