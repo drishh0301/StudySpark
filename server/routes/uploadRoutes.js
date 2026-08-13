@@ -5,12 +5,6 @@ const { uploadPDF } = require("../controllers/uploadController");
 const authMiddleware = require("../middleware/authMiddleware");
 const upload = require("../middleware/uploadMiddleware");
 
-// Upload PDF
-router.post(
-  "/",
-  authMiddleware,
-  upload.single("pdf"),
-  uploadPDF
-);
+router.post("/", authMiddleware, upload.single("pdf"), uploadPDF);
 
 module.exports = router;

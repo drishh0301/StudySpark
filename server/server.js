@@ -13,11 +13,8 @@ const connectDB = require("./config/db");
 
 const app = express();
 
-// Connect Database
 connectDB();
 
-// Middleware
-// CORS
 app.use((req, res, next) => {
     res.header("Access-Control-Allow-Origin", req.headers.origin || "*");
     res.header(
@@ -35,7 +32,6 @@ app.use((req, res, next) => {
 
 app.use(express.json());
 
-//Routes
 app.use("/api/auth", authRoutes);
 app.use("/api/notes", noteRoutes);
 app.use("/api/flashcards", flashcardRoutes);

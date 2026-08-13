@@ -44,7 +44,6 @@ const generateFlashcards = async (req, res) => {
             });
         }
 
-        // Roughly 1 flashcard per 100 words, kept between 5 and 15
         const wordCount = content.trim().split(/\s+/).length;
         const cardCount = Math.min(15, Math.max(5, Math.ceil(wordCount / 100)));
 
@@ -61,23 +60,21 @@ Return ONLY a valid JSON array.
 
 Example:
 [
-  {
+    {
     "question": "What is an Operating System?",
     "answer": "System software that manages computer hardware and software."
-  }
+    }
 ]
 
 Notes:
 ${content}
 `;
 
-        // Ask Gemini
         const response = await askGemini(prompt);
 
         console.log("Gemini Response:");
         console.log(response);
 
-        // Remove markdown formatting if Gemini returns ```json ... ```
         const cleanedResponse = response
             .replace(/```json/g, "")
             .replace(/```/g, "")
@@ -94,7 +91,6 @@ ${content}
             });
         }
 
-        // Save flashcards into MongoDB
         const savedFlashcards = [];
 
         for (const card of flashcards) {

@@ -3,8 +3,6 @@ const { askGemini } = require("../services/geminiService");
 
 const getQuizStats = async (req, res) => {
     try {
-        // Each quiz question is its own document, so count distinct notes
-        // that have a quiz rather than raw question documents.
         const noteIds = await Quiz.distinct("noteId", { userId: req.user.id });
         res.status(200).json({ count: noteIds.length });
     } catch (error) {
@@ -46,7 +44,6 @@ const generateQuiz = async (req, res) => {
             });
         }
 
-        // Roughly 1 question per 150 words, kept between 5 and 10
         const wordCount = content.trim().split(/\s+/).length;
         const questionCount = Math.min(
             10,
@@ -61,16 +58,16 @@ Generate exactly ${questionCount} multiple-choice questions from the notes below
 Return ONLY valid JSON in this format:
 
 [
-  {
+    {
     "question": "...",
     "options": [
-      "...",
-      "...",
-      "...",
-      "..."
+        "...",
+        "...",
+        "...",
+        "..."
     ],
     "correctAnswer": "..."
-  }
+    }
 ]
 
 Notes:
@@ -79,8 +76,6 @@ ${content}
 
         const response = await askGemini(prompt);
 
-        // Gemini frequently wraps JSON in ```json ... ``` fences even when
-        // told not to — strip those before parsing, same as flashcardController.
         const cleanedResponse = response
             .replace(/```json/g, "")
             .replace(/```/g, "")

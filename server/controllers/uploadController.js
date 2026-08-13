@@ -13,10 +13,8 @@ const uploadPDF = async (req, res) => {
             });
         }
 
-        // PDF is now stored in memory by Multer
         const dataBuffer = req.file.buffer;
 
-        // Extract text from PDF
         const pdfData = await pdfParse(dataBuffer);
         const extractedText = pdfData.text.trim();
 
@@ -27,7 +25,6 @@ const uploadPDF = async (req, res) => {
             });
         }
 
-        // Save extracted text as a Note
         const note = await Note.create({
             title: req.file.originalname,
             content: extractedText,
